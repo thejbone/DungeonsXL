@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2021 Frank Baumann
+ * Copyright (C) 2012-2022 Frank Baumann
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 package de.erethon.dungeonsxl.mob;
 
 import de.erethon.caliburn.mob.ExMob;
+import de.erethon.caliburn.mob.VanillaMob;
 import de.erethon.dungeonsxl.DungeonsXL;
 import de.erethon.dungeonsxl.api.dungeon.GameRule;
 import de.erethon.dungeonsxl.api.event.mob.DungeonMobDeathEvent;
@@ -45,9 +46,9 @@ public class DMob implements DungeonMob {
 
     public DMob(LivingEntity entity, GameWorld gameWorld, ExMob type, String trigger) {
         this.entity = entity;
-        this.type = type;
+        this.type = type != null ? type : VanillaMob.get(entity.getType());
 
-        if (!getDrops(gameWorld.getDungeon().getRules().getState(GameRule.MOB_ITEM_DROPS))) {
+        if (this.type != VanillaMob.PLAYER && !getDrops(gameWorld.getDungeon().getRules().getState(GameRule.MOB_ITEM_DROPS))) {
             entity.getEquipment().setHelmetDropChance(0);
             entity.getEquipment().setChestplateDropChance(0);
             entity.getEquipment().setLeggingsDropChance(0);
