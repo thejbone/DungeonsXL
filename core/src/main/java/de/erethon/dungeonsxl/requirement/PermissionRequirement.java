@@ -79,7 +79,7 @@ public class PermissionRequirement implements Requirement {
             } else {
                 first = false;
             }
-            builder.append(node).color(player.hasPermission(node) ? ChatColor.GREEN : ChatColor.DARK_RED);
+            builder.append(node).color(player.hasPermission(node) ? ChatColor.GREEN : ChatColor.RED);
         }
         return builder.create();
     }

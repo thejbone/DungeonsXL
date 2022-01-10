@@ -84,7 +84,7 @@ public class KeyItemsRequirement implements Requirement {
 
         boolean first = true;
         for (ExItem key : keyItems) {
-            ChatColor color = exInventory.contains(key) ? ChatColor.GREEN : ChatColor.DARK_RED;
+            ChatColor color = exInventory.contains(key) ? ChatColor.GREEN : ChatColor.RED;
             if (!first) {
                 builder.append(", ").color(ChatColor.WHITE);
             } else {

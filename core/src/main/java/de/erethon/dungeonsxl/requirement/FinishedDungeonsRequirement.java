@@ -144,7 +144,7 @@ public class FinishedDungeonsRequirement implements Requirement {
                 } else {
                     firstOr = false;
                 }
-                builder.append(dat.toString()).color(finished.isEmpty() ? ChatColor.DARK_RED : ChatColor.WHITE);
+                builder.append(dat.toString()).color(finished.isEmpty() ? ChatColor.RED : ChatColor.WHITE);
             }
         }
         return builder.create();

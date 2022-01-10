@@ -52,7 +52,11 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
+
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitTask;
@@ -244,6 +248,9 @@ public class DGroup implements PlayerGroup {
         // Send message
         if (!silent) {
             sendMessage(DMessage.GROUP_INVITED_PLAYER.getMessage(getLeader().getName(), player.getName(), name));
+            TextComponent clickInvite = new TextComponent(ChatColor.GOLD + "[Click to join " + ChatColor.RED + getLeader().getName() + ChatColor.GOLD + "'s group!]" );
+            clickInvite.setClickEvent( new ClickEvent( ClickEvent.Action.RUN_COMMAND, "/dxl group join " + name) );
+            player.spigot().sendMessage(clickInvite);
         }
 
         // Add player

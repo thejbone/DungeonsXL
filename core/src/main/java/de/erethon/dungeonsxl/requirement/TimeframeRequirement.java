@@ -141,7 +141,7 @@ public class TimeframeRequirement implements Requirement {
         ComponentBuilder builder = new ComponentBuilder(DMessage.REQUIREMENT_TIMEFRAME.getMessage() + ": ").color(ChatColor.GOLD);
         boolean first = true;
         for (Timeframe<Weekday> timeframe : weekdays) {
-            ChatColor color = isInDayTimeframe(timeframe) ? ChatColor.GREEN : ChatColor.DARK_RED;
+            ChatColor color = isInDayTimeframe(timeframe) ? ChatColor.GREEN : ChatColor.RED;
             if (!first) {
                 builder.append(" & ").color(ChatColor.WHITE);
             } else {
@@ -156,7 +156,7 @@ public class TimeframeRequirement implements Requirement {
 
         first = true;
         for (Timeframe<Integer> timeframe : daytimes) {
-            ChatColor color = isInHourTimeframe(timeframe) ? ChatColor.GREEN : ChatColor.DARK_RED;
+            ChatColor color = isInHourTimeframe(timeframe) ? ChatColor.GREEN : ChatColor.RED;
             if (!first) {
                 builder.append(" & ").color(ChatColor.WHITE);
             } else {

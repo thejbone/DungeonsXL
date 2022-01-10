@@ -262,6 +262,8 @@ public class DResourceWorld implements ResourceWorld {
         File folder = new File(Bukkit.getWorldContainer(), name);
         WorldCreator creator = new WorldCreator(name);
         creator.type(WorldType.FLAT);
+        creator.generatorSettings("2;0;0");
+        creator.generator("VoidWorld");
         creator.generateStructures(false);
 
         DEditWorld editWorld = new DEditWorld(plugin, this, folder);
@@ -317,6 +319,8 @@ public class DResourceWorld implements ResourceWorld {
     public static void createRaw() {
         WorldCreator rawCreator = WorldCreator.name(".raw");
         rawCreator.type(WorldType.FLAT);
+        rawCreator.generatorSettings("2;0;0");
+        rawCreator.generator("VoidWorld");
         rawCreator.generateStructures(false);
         World world = rawCreator.createWorld();
         File worldFolder = new File(Bukkit.getWorldContainer(), ".raw");

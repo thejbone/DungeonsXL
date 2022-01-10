@@ -24,7 +24,7 @@ import org.bukkit.block.Sign;
  */
 public class GlowingBlockSign extends Rocker {
 
-    private ChatColor color = ChatColor.DARK_RED;
+    private ChatColor color = ChatColor.RED;
     private Double time;
 
     private GlowingBlock glowingBlock;

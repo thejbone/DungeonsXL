@@ -74,7 +74,7 @@ public class FeeMoneyRequirement implements Requirement {
     @Override
     public BaseComponent[] getCheckMessage(Player player) {
         double money = econ.getBalance(player);
-        ChatColor color = money >= fee ? ChatColor.GREEN : ChatColor.DARK_RED;
+        ChatColor color = money >= fee ? ChatColor.GREEN : ChatColor.RED;
         return new ComponentBuilder(DMessage.REQUIREMENT_FEE_MONEY.getMessage() + ": ").color(ChatColor.GOLD)
                 .append(String.valueOf(money)).color(color)
                 .append("/" + fee).color(ChatColor.WHITE)

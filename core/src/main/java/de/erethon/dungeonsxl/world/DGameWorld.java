@@ -481,6 +481,7 @@ public class DGameWorld extends DInstanceWorld implements GameWorld {
         boolean unloaded = Bukkit.unloadWorld(getWorld(), /* SPIGOT-5225 */ !Version.isAtLeast(Version.MC1_14_4));
         if (unloaded) {
             FileUtil.removeDir(getFolder());
+            plugin.log("Unloaded world " + name);
         } else {
             plugin.log("Error: World could not be unloaded, players left in world: " + !getWorld().getPlayers().isEmpty());
         }

@@ -442,7 +442,12 @@ public class DGamePlayer extends DInstancePlayer implements GamePlayer {
         }
 
         if (getGameWorld().getPlayers().isEmpty()) {
-            getGameWorld().delete();
+            plugin.log("Start of the attempt to unload and delete world " + getGameWorld().getName() + "...");
+            Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+                public void run() {
+                    getGameWorld().delete();
+                }
+            }, 600L);
         }
     }
 

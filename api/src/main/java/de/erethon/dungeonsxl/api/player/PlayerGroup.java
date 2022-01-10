@@ -53,7 +53,7 @@ public interface PlayerGroup {
         LIGHT_BLUE(ChatColor.AQUA, DyeColor.LIGHT_BLUE, VanillaItem.LIGHT_BLUE_WOOL),
         PURPLE(ChatColor.DARK_PURPLE, DyeColor.PURPLE, VanillaItem.PURPLE_WOOL),
         MAGENTA(ChatColor.LIGHT_PURPLE, DyeColor.MAGENTA, VanillaItem.MAGENTA_WOOL),
-        DARK_RED(ChatColor.DARK_RED, DyeColor.BROWN, VanillaItem.BROWN_WOOL),
+        RED(ChatColor.RED, DyeColor.BROWN, VanillaItem.BROWN_WOOL),
         LIGHT_RED(ChatColor.RED, DyeColor.RED, VanillaItem.RED_WOOL),
         ORANGE(ChatColor.GOLD, DyeColor.ORANGE, VanillaItem.ORANGE_WOOL),
         YELLOW(ChatColor.YELLOW, DyeColor.YELLOW, VanillaItem.YELLOW_WOOL),

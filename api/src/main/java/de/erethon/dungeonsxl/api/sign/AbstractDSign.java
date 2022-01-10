@@ -33,7 +33,7 @@ import org.bukkit.block.Sign;
  */
 public abstract class AbstractDSign implements DungeonSign {
 
-    public static final String ERROR_0 = ChatColor.DARK_RED + "## ERROR ##";
+    public static final String ERROR_0 = ChatColor.RED + "## ERROR ##";
     public static final String ERROR_1 = ChatColor.WHITE + "Please";
     public static final String ERROR_2 = ChatColor.WHITE + "contact an";
     public static final String ERROR_3 = ChatColor.WHITE + "Admin!";

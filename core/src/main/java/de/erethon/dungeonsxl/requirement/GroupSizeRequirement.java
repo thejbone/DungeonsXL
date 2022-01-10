@@ -85,7 +85,7 @@ public class GroupSizeRequirement implements Requirement {
     @Override
     public BaseComponent[] getCheckMessage(Player player) {
         int size = api.getPlayerGroup(player).getMembers().size();
-        ChatColor color = size >= minimum && size <= maximum ? ChatColor.GREEN : ChatColor.DARK_RED;
+        ChatColor color = size >= minimum && size <= maximum ? ChatColor.GREEN : ChatColor.RED;
         return new ComponentBuilder(DMessage.REQUIREMENT_GROUP_SIZE.getMessage() + ": ").color(ChatColor.GOLD)
                 .append(String.valueOf(size)).color(color)
                 .append("/" + minimum + "-" + maximum).color(ChatColor.WHITE)

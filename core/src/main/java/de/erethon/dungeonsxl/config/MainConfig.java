@@ -79,7 +79,7 @@ public class MainConfig extends DREConfig {
             BLACK,
             LIGHT_BLUE,
             DARK_GREEN,
-            DARK_RED,
+            RED,
             LIGHT_GRAY,
             CYAN,
             MAGENTA,

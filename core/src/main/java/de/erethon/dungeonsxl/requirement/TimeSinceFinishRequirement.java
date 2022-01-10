@@ -67,7 +67,7 @@ public class TimeSinceFinishRequirement implements Requirement {
         if (lastTime == -1) {
             builder.append(DMessage.REQUIREMENT_TIME_SINCE_NEVER.getMessage()).color(ChatColor.GREEN);
         } else {
-            ChatColor color = lastTime + time * HOUR_IN_MILLIS < System.currentTimeMillis() ? ChatColor.GREEN : ChatColor.DARK_RED;
+            ChatColor color = lastTime + time * HOUR_IN_MILLIS < System.currentTimeMillis() ? ChatColor.GREEN : ChatColor.RED;
             builder.append(SimpleDateUtil.ddMMMMyyyyhhmmss(lastTime)).color(color);
         }
 

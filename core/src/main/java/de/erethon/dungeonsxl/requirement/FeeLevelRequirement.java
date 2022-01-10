@@ -73,7 +73,7 @@ public class FeeLevelRequirement implements Requirement {
     @Override
     public BaseComponent[] getCheckMessage(Player player) {
         int level = getRelevantLevel(player);
-        ChatColor color = level >= fee ? ChatColor.GREEN : ChatColor.DARK_RED;
+        ChatColor color = level >= fee ? ChatColor.GREEN : ChatColor.RED;
         return new ComponentBuilder(DMessage.REQUIREMENT_FEE_LEVEL.getMessage() + ": ").color(ChatColor.GOLD)
                 .append(String.valueOf(level)).color(color)
                 .append("/" + fee).color(ChatColor.WHITE)

@@ -106,7 +106,7 @@ public class ForbiddenItemsRequirement implements Requirement {
         boolean first = true;
         for (Entry<ExItem, Boolean> entry : forbiddenItems.entrySet()) {
             boolean contains = containsItem(exInventory, entry.getKey(), entry.getValue());
-            ChatColor color = contains ? ChatColor.DARK_RED : ChatColor.GREEN;
+            ChatColor color = contains ? ChatColor.RED : ChatColor.GREEN;
             if (!first) {
                 builder.append(", ").color(ChatColor.WHITE);
             } else {

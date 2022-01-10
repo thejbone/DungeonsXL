@@ -52,10 +52,10 @@ public class TimeIsRunningTask extends BukkitRunnable {
         String color = ChatColor.GREEN.toString();
 
         try {
-            color = (double) timeLeft / (double) time > 0.25 ? ChatColor.GREEN.toString() : ChatColor.DARK_RED.toString();
+            color = (double) timeLeft / (double) time > 0.25 ? ChatColor.GREEN.toString() : ChatColor.RED.toString();
 
         } catch (ArithmeticException exception) {
-            color = ChatColor.DARK_RED.toString();
+            color = ChatColor.RED.toString();
 
         } finally {
             for (Player player : group.getMembers().getOnlinePlayers()) {

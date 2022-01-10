@@ -36,7 +36,7 @@ public class StatusCommand extends DCommand {
     private PluginManager manager = Bukkit.getPluginManager();
 
     public static final String TRUE = ChatColor.GREEN + "\u2714";
-    public static final String FALSE = ChatColor.DARK_RED + "\u2718";
+    public static final String FALSE = ChatColor.RED + "\u2718";
 
     public StatusCommand(DungeonsXL plugin) {
         super(plugin);
@@ -65,6 +65,7 @@ public class StatusCommand extends DCommand {
         MessageUtil.sendMessage(sender, "= Bukkit: " + bukkitVersion + " " + internalsVersionCorrect);
         MessageUtil.sendMessage(sender, "= Internals (package version): " + internalsVersion + " " + internalsVersionCorrect);
         MessageUtil.sendMessage(sender, "= DungeonsXL: " + dungeonsxlVersion + " " + dungeonsxlVersionCorrect);
+        MessageUtil.sendMessage(sender, "= Players In Dungeons: " + plugin.getPlayerCache().getAll().size());
 
         Plugin vault = manager.getPlugin("Vault");
         Plugin itemsxl = manager.getPlugin("ItemsXL");

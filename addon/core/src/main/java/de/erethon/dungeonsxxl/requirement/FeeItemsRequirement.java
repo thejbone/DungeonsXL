@@ -54,7 +54,7 @@ public class FeeItemsRequirement implements Requirement {
         boolean first = true;
         for (ItemStack stack : fee) {
             String name = stack.getAmount() > 1 ? stack.getAmount() + " " : "" + api.getCaliburn().getExItem(stack).getName();
-            ChatColor color = player.getInventory().containsAtLeast(stack, stack.getAmount()) ? ChatColor.GREEN : ChatColor.DARK_RED;
+            ChatColor color = player.getInventory().containsAtLeast(stack, stack.getAmount()) ? ChatColor.GREEN : ChatColor.RED;
             if (!first) {
                 builder.append(", ").color(ChatColor.WHITE);
             } else {
