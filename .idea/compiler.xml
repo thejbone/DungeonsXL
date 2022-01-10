@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="dungeonsxl-bukkit_magicvalues" />
+        <module name="dungeonsxl-addon-dist" />
+        <module name="dungeonsxl-api" />
+        <module name="dungeonsxl-core" />
+        <module name="dungeonsxl-bukkit_blockdata" />
+        <module name="dungeonsxl-dist" />
+        <module name="dungeonsxl-adapter" />
+        <module name="dungeonsxl-addon-core" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>
