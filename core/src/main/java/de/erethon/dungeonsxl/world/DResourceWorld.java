@@ -185,7 +185,7 @@ public class DResourceWorld implements ResourceWorld {
         }
 
         FileUtil.copyDir(folder, instanceFolder, DungeonsXL.EXCLUDED_FILES);
-        instance.world = Bukkit.createWorld(WorldCreator.name(name).environment(getWorldEnvironment())).getName();
+        instance.world = Bukkit.createWorld(WorldCreator.name(name).generateStructures(false).generator("VoidWorld").environment(getWorldEnvironment())).getName();
         if (Internals.isAtLeast(Internals.v1_13_R1)) {
             instance.getWorld().setGameRule(GameRule.DO_FIRE_TICK, false);
         }
