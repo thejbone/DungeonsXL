@@ -18,6 +18,7 @@ package de.erethon.dungeonsxl.global;
 
 import de.erethon.caliburn.category.Category;
 import de.erethon.caliburn.item.VanillaItem;
+import de.erethon.commons.chat.MessageUtil;
 import de.erethon.dungeonsxl.DungeonsXL;
 import de.erethon.dungeonsxl.config.DMessage;
 import de.erethon.dungeonsxl.player.DGlobalPlayer;
@@ -107,7 +108,11 @@ public class GlobalProtectionListener implements Listener {
     @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
     public void onPlayerBucketFill(PlayerBucketFillEvent event) {
         Player player = event.getPlayer();
-        if (DPlayerListener.isCitizensNPC(player)) {
+        try {
+            if (DPlayerListener.isCitizensNPC(player)) {
+                return;
+            }
+        } catch (Exception ignored){
             return;
         }
         Block block = event.getBlockClicked();
@@ -145,6 +150,13 @@ public class GlobalProtectionListener implements Listener {
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
+        try {
+            if (DPlayerListener.isCitizensNPC(player)) {
+                return;
+            }
+        } catch (Exception ignored){
+            return;
+        }
         if (DPlayerListener.isCitizensNPC(player) || plugin.isInstance(event.getTo().getWorld())) {
             return;
         }
@@ -193,11 +205,16 @@ public class GlobalProtectionListener implements Listener {
     @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
     public void onPortalCreation(PlayerInteractEvent event) {
         Player player = event.getPlayer();
-        if (DPlayerListener.isCitizensNPC(player)) {
-            return;
-        }
-        DGlobalPlayer dPlayer = (DGlobalPlayer) plugin.getPlayerCache().get(player);
-        if (!dPlayer.isCreatingPortal()) {
+        DGlobalPlayer dPlayer = null;
+        try {
+            if (DPlayerListener.isCitizensNPC(player)) {
+                return;
+            }
+            dPlayer = (DGlobalPlayer) plugin.getPlayerCache().get(player);
+            if (!dPlayer.isCreatingPortal()) {
+                return;
+            }
+        } catch (Exception ignored){
             return;
         }
         ItemStack item = event.getItem();
@@ -228,7 +245,14 @@ public class GlobalProtectionListener implements Listener {
     @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
     public void onInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
-        if (DPlayerListener.isCitizensNPC(player) || plugin.getPlayerCache().get(player).isInBreakMode()) {
+        if (player == null){
+            return;
+        }
+        try {
+            if (DPlayerListener.isCitizensNPC(player) || plugin.getPlayerCache().get(player).isInBreakMode()) {
+                return;
+            }
+        } catch (Exception ignored){
             return;
         }
         Block clickedBlock = event.getClickedBlock();

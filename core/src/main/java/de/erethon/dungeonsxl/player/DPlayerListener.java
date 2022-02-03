@@ -36,6 +36,8 @@ import de.erethon.dungeonsxl.util.commons.chat.MessageUtil;
 import de.erethon.dungeonsxl.world.DGameWorld;
 import de.erethon.dungeonsxl.world.block.LockedDoor;
 import java.util.ArrayList;
+import java.util.Locale;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -240,6 +242,9 @@ public class DPlayerListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void onPlayerChat(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
+        if(player.getName().toLowerCase(Locale.ROOT).contains("xu2fakeplayer")){
+            return;
+        }
         if (isCitizensNPC(player)) {
             return;
         }
@@ -274,6 +279,10 @@ public class DPlayerListener implements Listener {
     @EventHandler
     public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent event) {
         Player player = event.getPlayer();
+
+        if(player.getName().toLowerCase(Locale.ROOT).contains("xu2fakeplayer")){
+            return;
+        }
         if (isCitizensNPC(player)) {
             return;
         }
@@ -335,6 +344,10 @@ public class DPlayerListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void onPlayerDropItem(PlayerDropItemEvent event) {
         Player player = event.getPlayer();
+
+        if(player.getName().toLowerCase(Locale.ROOT).contains("xu2fakeplayer")){
+            return;
+        }
         if (isCitizensNPC(player)) {
             return;
         }
@@ -381,6 +394,10 @@ public class DPlayerListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
+
+        if(player.getName().toLowerCase(Locale.ROOT).contains("xu2fakeplayer")){
+            return;
+        }
         if (plugin.checkPlayer(player)) {
             return;
         }
@@ -403,6 +420,10 @@ public class DPlayerListener implements Listener {
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
+
+        if(player.getName().toLowerCase(Locale.ROOT).contains("xu2fakeplayer")){
+            return;
+        }
         if (isCitizensNPC(player)) {
             return;
         }
@@ -426,6 +447,10 @@ public class DPlayerListener implements Listener {
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
+
+        if(player.getName().toLowerCase(Locale.ROOT).contains("xu2fakeplayer")){
+            return;
+        }
         GlobalPlayer dPlayer = plugin.getPlayerCache().get(player);
         PlayerGroup dGroup = dPlayer.getGroup();
 
@@ -460,6 +485,10 @@ public class DPlayerListener implements Listener {
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
         Player player = event.getPlayer();
+
+        if(player.getName().toLowerCase(Locale.ROOT).contains("xu2fakeplayer")){
+            return;
+        }
         if (isCitizensNPC(player)) {
             return;
         }
@@ -504,6 +533,10 @@ public class DPlayerListener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerTeleport(PlayerTeleportEvent event) {
         Player player = event.getPlayer();
+
+        if(player.getName().toLowerCase(Locale.ROOT).contains("xu2fakeplayer")){
+            return;
+        }
         if (isCitizensNPC(player)) {
             return;
         }
@@ -530,6 +563,10 @@ public class DPlayerListener implements Listener {
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
+
+        if(player.getName().toLowerCase(Locale.ROOT).contains("xu2fakeplayer")){
+            return;
+        }
         if (isCitizensNPC(player)) {
             return;
         }
