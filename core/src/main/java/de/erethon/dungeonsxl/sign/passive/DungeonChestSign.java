@@ -86,7 +86,7 @@ public class DungeonChestSign extends ChestSign {
         Inventory inventory = ContainerAdapter.getBlockInventory(chest);
 
         for (int i = 0; i < chestContent.length; i++) {
-            int j = new Random().nextInt() %27;
+            int j = new Random().nextInt(27 -1) ;
             if (inventory.getItem(j) == null|| inventory.getItem(j).getType() == Material.AIR) {
                 ItemStack item = chestContent[i];
                 item.setAmount(new Random().nextInt(item.getAmount()));
