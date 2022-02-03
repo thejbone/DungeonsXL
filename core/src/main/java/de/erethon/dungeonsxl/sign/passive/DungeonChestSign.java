@@ -23,8 +23,12 @@ import de.erethon.dungeonsxl.player.DPermission;
 import de.erethon.dungeonsxl.util.ContainerAdapter;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
+
 import org.bukkit.block.Sign;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.Material;
 
 /**
  * @author Daniel Saukel
@@ -79,6 +83,19 @@ public class DungeonChestSign extends ChestSign {
         }
 
         chestContent = Arrays.copyOfRange(list.toArray(new ItemStack[list.size()]), 0, 26);
+        Inventory inventory = ContainerAdapter.getBlockInventory(chest);
+
+        for (int i = 0; i < chestContent.length; i++) {
+            int j = new Random().nextInt() %27;
+            if (inventory.getItem(j) == null|| inventory.getItem(j).getType() == Material.AIR) {
+                ItemStack item = chestContent[i];
+                item.setAmount(new Random().nextInt(item.getAmount()));
+                inventory.setItem(j, item);
+            } else {
+                i--;
+            }
+
+        }
         ContainerAdapter.getBlockInventory(chest).setContents(chestContent);
     }
 
