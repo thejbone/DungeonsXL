@@ -85,18 +85,30 @@ public class DungeonChestSign extends ChestSign {
         chestContent = Arrays.copyOfRange(list.toArray(new ItemStack[list.size()]), 0, 26);
         Inventory inventory = ContainerAdapter.getBlockInventory(chest);
 
-        for (int i = 0; i < chestContent.length; i++) {
-            int j = new Random().nextInt(27 -1) ;
-            if (inventory.getItem(j) == null|| inventory.getItem(j).getType() == Material.AIR) {
-                ItemStack item = chestContent[i];
-                item.setAmount(new Random().nextInt(item.getAmount()));
-                inventory.setItem(j, item);
-            } else {
-                i--;
+        Random random = new Random();
+
+        for (ItemStack itemStack : chestContent) {
+            if (itemStack == null ||  Material.AIR.equals(itemStack.getType())) {
+                continue;
             }
 
+            int i = 0;
+            do {
+                int j = random.nextInt(inventory.getSize());
+                if (inventory.getItem(j) == null || inventory.getItem(j).getType().equals(Material.AIR)) {
+                    if (itemStack.getMaxStackSize() > 1) {
+                        itemStack.setAmount(random.nextInt(Math.min(itemStack.getAmount() + 1, itemStack.getMaxStackSize())));
+                    }
+                    inventory.setItem(j, itemStack);
+
+                } else {
+                    i++;
+                }
+            } while (i < 3);
+            if (i == 3) {
+                inventory.addItem(itemStack);
+            }
         }
-        ContainerAdapter.getBlockInventory(chest).setContents(chestContent);
     }
 
 }
