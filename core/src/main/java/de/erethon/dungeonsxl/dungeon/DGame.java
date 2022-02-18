@@ -31,13 +31,12 @@ import de.erethon.dungeonsxl.player.DGroup;
 import de.erethon.dungeonsxl.sign.windup.MobSign;
 import de.erethon.dungeonsxl.trigger.ProgressTrigger;
 import de.erethon.dungeonsxl.world.DGameWorld;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+
+import java.util.*;
+
+import de.erethon.vignette.util.PlayerCollection;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -317,6 +316,8 @@ public class DGame implements Game {
         for (PlayerGroup group : groups) {
             if (group != null) {
                 ((DGroup) group).startGame(this, i++);
+                if(!getPlayers().isEmpty() && getPlayers().stream().findFirst().isPresent())
+                    Bukkit.broadcastMessage(ChatColor.AQUA + getPlayers().stream().findFirst().get().getName() + " started the " + getDungeon().getName() + " dungeon! " + ChatColor.BOLD + " /play");
             }
         }
 

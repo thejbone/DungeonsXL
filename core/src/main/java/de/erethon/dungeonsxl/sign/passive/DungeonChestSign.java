@@ -17,12 +17,14 @@
 package de.erethon.dungeonsxl.sign.passive;
 
 import de.erethon.caliburn.item.VanillaItem;
+import de.erethon.dungeonsxl.DungeonsXL;
 import de.erethon.dungeonsxl.api.DungeonsAPI;
 import de.erethon.dungeonsxl.api.world.InstanceWorld;
 import de.erethon.dungeonsxl.player.DPermission;
 import de.erethon.dungeonsxl.util.ContainerAdapter;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 import org.bukkit.block.Sign;
@@ -67,47 +69,67 @@ public class DungeonChestSign extends ChestSign {
             chest = getSign().getBlock();
         }
 
-        List<ItemStack> list = null;
+        List<ItemStack> chestContent = null;
         if (lootTable != null) {
-            list = lootTable.generateLootList();
+            chestContent = lootTable.generateLootList();
         }
-        if (chestContent != null) {
-            if (list != null) {
-                list.addAll(Arrays.asList(chestContent));
-            } else {
-                list = Arrays.asList(chestContent);
-            }
-        }
-        if (list == null) {
+//        if (chestContent != null) {
+//            if (list != null) {
+//                list.addAll(Arrays.asList(chestContent));
+//            } else {
+//                list = Arrays.asList(chestContent);
+//            }
+//        }
+        if (chestContent == null) {
             return;
         }
 
-        chestContent = Arrays.copyOfRange(list.toArray(new ItemStack[list.size()]), 0, 26);
+//        chestContent = Arrays.copyOfRange(list.toArray(new ItemStack[list.size()]), 0, 26);
         Inventory inventory = ContainerAdapter.getBlockInventory(chest);
-
         Random random = new Random();
 
         for (ItemStack itemStack : chestContent) {
             if (itemStack == null ||  Material.AIR.equals(itemStack.getType())) {
                 continue;
             }
+            int itemCount = 0;
+            int maxItems = random.nextInt((itemStack.getAmount() > 1) ? 3 : 2);
 
-            int i = 0;
+            int randomSlot;
+
             do {
-                int j = random.nextInt(inventory.getSize());
-                if (inventory.getItem(j) == null || inventory.getItem(j).getType().equals(Material.AIR)) {
-                    if (itemStack.getMaxStackSize() > 1) {
-                        itemStack.setAmount(random.nextInt(Math.min(itemStack.getAmount() + 1, itemStack.getMaxStackSize())));
-                    }
-                    inventory.setItem(j, itemStack);
-
-                } else {
-                    i++;
+                randomSlot = random.nextInt(inventory.getSize());
+                if (itemStack.getAmount() > 1) {
+                    itemStack.setAmount(random.nextInt(itemStack.getAmount()));
                 }
-            } while (i < 3);
-            if (i == 3) {
-                inventory.addItem(itemStack);
-            }
+                if (inventory.getItem(randomSlot) == null) {
+                    inventory.setItem(randomSlot, itemStack);
+                    itemCount++;
+                }
+            } while (inventory.firstEmpty() != -1 && itemCount < maxItems); // avoid infinite loop
+
+//            do {
+//                int j = random.nextInt(inventory.getSize());
+//                if (inventory.getItem(j) == null) {
+//                    if (itemStack.getMaxStackSize() > 1) {
+//                        itemStack.setAmount(random.nextInt(Math.min(1, itemStack.getAmount() + 1)));
+//                    }
+//                    inventory.setItem(j, itemStack);
+//                    itemCount++;
+//                    maxChestSizeCheck++;
+//                } else {
+//                    infiniteLoopCheck++;
+//                }
+//            } while (infiniteLoopCheck < 3 && itemCount < maxItems && maxChestSizeCheck <= inventory.getSize());
+//            if (infiniteLoopCheck == 3) {
+//                try {
+//                    if(itemCount < maxItems){
+//                        inventory.addItem(itemStack);
+//                    }
+//                } catch (Exception e){
+//                    e.printStackTrace();
+//                }
+//            }
         }
     }
 
